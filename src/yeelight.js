@@ -4,6 +4,7 @@ import url from 'url';
 import Logger from './logger';
 import Device from './device';
 import MemoryStore from './memoryStore';
+import Store from './store';
 
 class Yeelight {
 
@@ -64,4 +65,4 @@ class Yeelight {
   }
 }
 
-export default Yeelight;
+export { Yeelight as default, Device, Store };
