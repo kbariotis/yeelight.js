@@ -1,0 +1,58 @@
+{
+  "name": "yeelight.js",
+  "version": "1.0.0",
+  "description": "Control your Yeelight devices with Node.js.",
+  "main": "./lib/yeelight.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
+    "test:watch": "npm test -- --watch",
+    "test:examples": "node examples/",
+    "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --compilers js:babel-register --recursive",
+    "lint": "eslint src test",
+    "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbariotis/yeelight.js.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "npm",
+    "module",
+    "node",
+    "javascript"
+  ],
+  "author": "Kostas konmpar@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kbariotis/yeelight.js/issues"
+  },
+  "homepage": "https://github.com//kbariotis/yeelight.js",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.14.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-2": "^6.13.0",
+    "chai": "^3.5.0",
+    "cross-env": "^3.0.0",
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
+    "istanbul": "^1.0.0-alpha",
+    "mocha": "^3.0.2",
+    "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "winston": "^2.3.0"
+  }
+}
