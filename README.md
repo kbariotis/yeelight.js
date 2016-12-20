@@ -38,7 +38,7 @@ device.toggle();
 
 ## Contributing
 
-[Read this first].(https://github.com/kbariotis/yeelight.js/blob/master/CONTRIBUTING)
+[Read this first](https://github.com/kbariotis/yeelight.js/blob/master/CONTRIBUTING)
 
 This module uses Babel to transpile Stage 2 Javascript and airbnb's style.
 
