@@ -38,6 +38,8 @@ device.toggle();
 
 ## Contributing
 
+[Read this first].(https://github.com/kbariotis/yeelight.js/blob/master/CONTRIBUTING)
+
 This module uses Babel to transpile Stage 2 Javascript and airbnb's style.
 
 - `npm run clean` - Remove `lib/` directory
@@ -50,4 +52,4 @@ This module uses Babel to transpile Stage 2 Javascript and airbnb's style.
 - `npm run prepublish` - Hook for npm. Do all the checks before publishing you module.
 
 ## License
-[MIT Licence]
+[MIT Licence](https://github.com/kbariotis/yeelight.js/blob/master/LICENCE)
