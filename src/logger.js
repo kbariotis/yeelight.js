@@ -4,12 +4,12 @@ class Logger {
 
   constructor(options) {
     this.options = Object.assign({
-      enabled: true
+      enabled: true,
     }, options);
     this.logger = winston;
   }
 
-  info (msg) {
+  info(msg) {
     if (!this.options.enabled) {
       return;
     }

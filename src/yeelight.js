@@ -8,13 +8,12 @@ import MemoryStore from './memoryStore';
 class Yeelight {
 
   constructor(options) {
-
     this.options = Object.assign({
       verbose: true,
-      discoveryTimeout: 1000
+      discoveryTimeout: 1000,
     }, options);
 
-    this.logger = new Logger({enabled: this.options.verbose});
+    this.logger = new Logger({ enabled: this.options.verbose });
     this.store = new MemoryStore();
     this.socket = dgram.createSocket('udp4');
     this.message = new Buffer('M-SEARCH * HTTP/1.1\r\nHOST:239.255.255.250:1982\r\nMAN:"ssdp:discover"\r\nST:wifi_bulb\r\n');
