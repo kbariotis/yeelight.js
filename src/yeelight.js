@@ -1,13 +1,20 @@
 import dgram from 'dgram';
 import querystring from 'querystring';
 import url from 'url';
-import logger from 'winston';
+import Logger from './logger';
 import Device from './device';
 import MemoryStore from './memoryStore';
 
 class Yeelight {
 
-  constructor() {
+  constructor(options) {
+
+    this.options = Object.assign({
+      verbose: true,
+      discoveryTimeout: 1000
+    }, options);
+
+    this.logger = new Logger({enabled: this.options.verbose});
     this.store = new MemoryStore();
     this.socket = dgram.createSocket('udp4');
     this.message = new Buffer('M-SEARCH * HTTP/1.1\r\nHOST:239.255.255.250:1982\r\nMAN:"ssdp:discover"\r\nST:wifi_bulb\r\n');
@@ -34,7 +41,7 @@ class Yeelight {
     setTimeout(() => {
       this.socket.close();
       this.resolve(this.store.get());
-    }, 500);
+    }, this.options.discoveryTimeout);
   }
 
   onError() {
@@ -43,7 +50,7 @@ class Yeelight {
 
   onListening() {
     const address = this.socket.address();
-    logger.info(`Listening on ${address.address}:${address.port}`);
+    this.logger.info(`Listening on ${address.address}:${address.port}`);
   }
 
   onMessage(msg) {
@@ -54,4 +61,4 @@ class Yeelight {
   }
 }
 
-export default new Yeelight();
+export default Yeelight;

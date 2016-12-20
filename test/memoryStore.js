@@ -4,10 +4,10 @@ import Device from '../src/device';
 
 describe('MemoryStore', () => {
 
-  it('should be instantiated', () => {
+  it('should be able to instantiate', () => {
 
     const store = new MemoryStore();
-    expect(store).to.have.property('getById');
+    expect(store).to.be.an.instanceof(MemoryStore);
   });
 
   it('should get all devices', () => {
