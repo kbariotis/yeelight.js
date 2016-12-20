@@ -19,21 +19,33 @@ describe('MemoryStore', () => {
   it('should add a device', () => {
 
     const store = new MemoryStore();
-    store.add(new Device('ID', '192.168.1.23', '30132'));
+    store.add(new Device({
+      id: 'ID',
+      address: '192.168.1.23',
+      port: '30132'
+    }));
     expect(store.get()).to.have.length(1);
   });
 
   it('should not allow to add a duplicate id', () => {
 
     const store = new MemoryStore();
-    store.add(new Device('ID', '192.168.1.23', '30132'));
+    store.add(new Device({
+      id: 'ID',
+      address: '192.168.1.23',
+      port: '30132'
+    }));
     expect(store.get()).to.have.length(1);
   });
 
   it('should get a device by id', () => {
 
     const store = new MemoryStore();
-    store.add(new Device('ID', '192.168.1.23', '30132'));
+    store.add(new Device({
+      id: 'ID',
+      address: '192.168.1.23',
+      port: '30132'
+    }));
     expect(store.getById('ID')).to.have.property('id').and.to.equals('ID');
   });
 

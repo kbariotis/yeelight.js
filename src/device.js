@@ -2,10 +2,20 @@ import net from 'net';
 
 class Device {
 
-  constructor(id, address, port) {
-    this.id = id;
-    this.address = address;
-    this.port = port;
+  constructor(payload) {
+    if (!payload.id) {
+      throw new TypeError('Missing required parameters: id');
+    }
+    if (!payload.address) {
+      throw new TypeError('Missing required parameters: address');
+    }
+    if (!payload.port) {
+      throw new TypeError('Missing required parameters: port');
+    }
+
+    this.id = payload.id;
+    this.address = payload.address;
+    this.port = payload.port;
     this.socket = new net.Socket();
   }
 

@@ -56,7 +56,11 @@ class Yeelight {
     const message = querystring.parse(msg.toString('utf8'), '\r\n', ':');
     const urlObject = url.parse(message.Location);
 
-    this.store.add(new Device(message.id, urlObject.hostname, urlObject.port));
+    this.store.add(new Device({
+      id: message.id,
+      address: urlObject.hostname,
+      port: urlObject.port,
+    }));
   }
 }
 
