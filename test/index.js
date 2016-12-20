@@ -16,6 +16,6 @@ describe('Awesome test.', () => {
 
       const message = new Buffer(require('./response'));
       const client = dgram.createSocket('udp4');
-      client.send(message, 43210, '192.168.0.11', () => client.close());
+      client.send(message, 43210, '0.0.0.0', () => client.close());
   });
 });
