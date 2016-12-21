@@ -14,7 +14,7 @@ You can find the API documentation of the Yeelight devices [here](http://www.yee
 
 This is an example to start discovering devices in your local network.
 ```js
-import Yeelight from require('yeelight.js');
+import Yeelight from 'yeelight.js';
 
 Yeelight.discover().then((devices) => console.log(devices));
 ```
@@ -23,7 +23,7 @@ Yeelight.discover().then((devices) => console.log(devices));
 
 This is an example to start sending commands to your device.
 ```js
-import Device from require('yeelight.js');
+import Device from 'yeelight.js';
 
 const device = new Device({
   id: '1234',
