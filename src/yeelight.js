@@ -12,16 +12,15 @@ class Yeelight extends EventEmitter {
     super();
     this.options = Object.assign({
       verbose: true,
-      discoveryTimeout: 1000,
     }, options);
 
     this.logger = new Logger({ enabled: this.options.verbose });
     this.store = new MemoryStore();
-    this.discovery = new Discover({ discoveryTimeout: this.options.discoveryTimeout });
+    this.discovery = new Discover();
     this.watcher = new Watcher();
   }
 
-  discover() {
+  discover(discoveryTimeout: number): Promise<Array<Device>> {
     return new Promise((resolve, reject) => {
       this.discovery.discover();
 
@@ -30,7 +29,7 @@ class Yeelight extends EventEmitter {
 
       setTimeout(() => {
         resolve(this.store.get());
-      }, this.options.discoveryTimeout);
+      }, discoveryTimeout);
     });
   }
 

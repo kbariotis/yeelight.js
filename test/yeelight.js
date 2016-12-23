@@ -23,7 +23,7 @@ describe('Yeelight', () => {
     const yeelight = new Yeelight({verbose: false, discoveryTimeout: 100});
 
     yeelight
-      .discover()
+      .discover(100)
       .then((devices) => {
 
         expect(devices.length).to.equal(1);
