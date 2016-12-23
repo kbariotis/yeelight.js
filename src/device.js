@@ -1,4 +1,6 @@
 import net from 'net';
+import querystring from 'querystring';
+import url from 'url';
 
 class Device {
 
@@ -17,6 +19,17 @@ class Device {
     this.address = payload.address;
     this.port = payload.port;
     this.socket = new net.Socket();
+  }
+
+  static createDeviceFromMessage(msg) {
+    const message = querystring.parse(msg.toString('utf8'), '\r\n', ':');
+    const urlObject = url.parse(message.Location);
+
+    return new Device({
+      id: message.id,
+      address: urlObject.hostname,
+      port: urlObject.port,
+    });
   }
 
   sendCommand(command) {

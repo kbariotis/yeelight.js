@@ -39,17 +39,17 @@ describe('Yeelight', () => {
   it('should listen for advertisement packets', (done) => {
     const yeelight = new Yeelight({verbose: false, discoveryTimeout: 100});
 
-    yeelight
-      .watch()
-      .then((device) => {
+    yeelight.watch();
+    yeelight.on('device', (device) => {
 
-        expect(device).to.be.an.instanceof(Device);
-        done();
-      })
-      .catch((err) => done(err));
+      expect(device).to.be.an.instanceof(Device);
+      expect(yeelight.store.get()).to.have.length(1);
+      yeelight.stop();
+      done();
+    });
 
-      const message = new Buffer(require('./response'));
-      const client = dgram.createSocket('udp4');
-      client.send(message, 1982, '239.255.255.250', () => client.close());
+    const message = new Buffer(require('./advertisment'));
+    const client = dgram.createSocket('udp4');
+    client.send(message, 0, message.length, 1982, '239.255.255.250', () => client.close());
   });
 });
