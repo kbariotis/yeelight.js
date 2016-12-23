@@ -1,6 +1,6 @@
 'use strict';
 
-var Device = require('../lib/yeelight').Device;
+var Device = require('../lib/yeelight').Yeelight;
 
 const device = new Device({
   id: '1234',

@@ -22,7 +22,7 @@ write your own driver to store them wherever you want.
 
 This is an example to start discovering devices in your local network.
 ```js
-const Yeelight = require('yeelight.js').default;
+const Yeelight = require('yeelight.js').Yeelight;
 
 const yeelight = new Yeelight();
 Yeelight
@@ -35,7 +35,7 @@ constructor.
 
 Or to start watching for new devices.
 ```js
-const Yeelight = require('yeelight.js').default;
+const Yeelight = require('yeelight.js').Yeelight;
 
 const yeelight = new Yeelight();
 
@@ -65,6 +65,8 @@ const device = new Device({
 device.toggle();
 ```
 
+Read the generated documentation [here](https://github.com/kbariotis/yeelight.js/blob/master/DOCS.md).
+
 ## Contributing
 
 [Read this first](https://github.com/kbariotis/yeelight.js/blob/master/CONTRIBUTING.md)
@@ -76,8 +78,10 @@ This module uses Babel to transpile Stage 2 Javascript and airbnb's style.
 - `npm test:watch` - You can even re-run tests on file changes!
 - `npm run cover` - Yes. You can even cover ES6 code.
 - `npm run lint` - Lint your code.
+- `npm run flow` - Check using Flow.
 - `npm run test:examples` - Write your examples on pure JS for better understanding module usage.
 - `npm run build` - Build.
+- `npm run build-docs` - Build documentation using Documentation.
 - `npm run prepublish` - Hook for npm. Do all the checks before publishing you module.
 
 ## License

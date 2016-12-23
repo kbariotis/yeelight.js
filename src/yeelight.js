@@ -78,4 +78,4 @@ class Yeelight extends EventEmitter {
   }
 }
 
-export { Yeelight as default, Device, Store };
+export { Yeelight, Device, Store };

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Yeelight from '../src/yeelight';
+import {Yeelight} from '../src/yeelight';
 import Device from '../src/device';
 import dgram from 'dgram';
 
