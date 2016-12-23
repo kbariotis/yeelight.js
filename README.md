@@ -11,61 +11,8 @@ You can find the API documentation of the Yeelight devices
 
 ## Docs
 
-Yeelight.js consists of several classes you can utilize separetaly. Let's
-check them out.
-
-### Yeelight
-Yeelight class is a device manager that you can start playing around
-imidiatelly. It provices discovery of Yeelight devices and watching for 
-new devices. By default it stores the devices in memory, but you can
-write your own driver to store them wherever you want.
-
-This is an example to start discovering devices in your local network.
-```js
-const Yeelight = require('yeelight.js').Yeelight;
-
-const yeelight = new Yeelight();
-Yeelight
-  .discover()
-  .then((devices) => console.log(devices.length));
-```
-
-`discover` command will stop after the timeout specified in Yeelight's 
-constructor.
-
-Or to start watching for new devices.
-```js
-const Yeelight = require('yeelight.js').Yeelight;
-
-const yeelight = new Yeelight();
-
-yeelight.watch();
-yeelight.on('device', (device) => {
-  
-  device.toggle();
-
-  // Stop watching  
-  yeelight.stop();
-})
-```
-
-### Device
-When you already know the device's IP address and port.
-
-This is an example to start sending commands to your device.
-```js
-const Device = require('yeelight.js').Device;
-
-const device = new Device({
-  id: '1234',
-  address: '192.168.0.11',
-  port: 1982,
-});
-
-device.toggle();
-```
-
-Read the generated documentation [here](https://github.com/kbariotis/yeelight.js/blob/master/DOCS.md).
+* Read the generated documentation [here](https://github.com/kbariotis/yeelight.js/blob/master/DOCS.md).
+* Check the examples in [`examples/` folder](https://github.com/kbariotis/yeelight.js/blob/master/examples/).
 
 ## Contributing
 

@@ -6,6 +6,8 @@ const yeelight = new Yeelight({verbose: true, discoveryTimeout: 100});
 yeelight.watch();
 yeelight.on('device', (device) => {
 
-  device.toggle();
-  yeelight.stop();
+  device
+    .toggle()
+    .then(() => yeelight.stop())
+    .catch((err) => console.log(err));
 });

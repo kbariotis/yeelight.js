@@ -1,6 +1,6 @@
 'use strict';
 
-var Device = require('../lib/yeelight').Yeelight;
+var Device = require('../lib/yeelight').Device;
 
 const device = new Device({
   id: '1234',
@@ -10,5 +10,5 @@ const device = new Device({
 
 device
   .toggle()
-  .then(() => console.log())
-  .catch(() => console.log());
+  .then(() => console.log('done'))
+  .catch((err) => console.log(err));

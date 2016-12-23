@@ -58,7 +58,7 @@ class Device {
       this.socket.connect(
         {
           port: this.port,
-          address: this.address,
+          host: this.address,
         },
         () => this.socket.write(`${stringified}\r\n`),
       );
@@ -73,7 +73,7 @@ class Device {
         }
       });
 
-      this.socket.on('error', () => reject());
+      this.socket.on('error', err => reject(err));
       this.socket.on('close', () => resolve());
     });
   }
