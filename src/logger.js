@@ -1,15 +1,29 @@
+/* @flow */
+
 import winston from 'winston';
 
+/**
+ * Logger class
+ */
 class Logger {
 
-  constructor(options) {
+  options: Object;
+  logger: winston;
+
+  /**
+   * Constructor
+   */
+  constructor(options: { enabled: boolean }) {
     this.options = Object.assign({
       enabled: true,
     }, options);
     this.logger = winston;
   }
 
-  info(msg) {
+  /**
+   * Log an info message
+   */
+  info(msg: string): void {
     if (!this.options.enabled) {
       return;
     }

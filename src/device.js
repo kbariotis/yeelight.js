@@ -1,10 +1,23 @@
+/* @flow */
+
 import net from 'net';
 import querystring from 'querystring';
 import url from 'url';
 
+/**
+ * Represents a Yeelight device
+ */
 class Device {
 
-  constructor(payload) {
+  id: string;
+  address: string;
+  port: string;
+  socket: net.Socket;
+
+  /**
+   * Constructor
+   */
+  constructor(payload: { id: string, address: ?string, port: ?string }) {
     if (!payload.id) {
       throw new TypeError('Missing required parameters: id');
     }
@@ -21,8 +34,12 @@ class Device {
     this.socket = new net.Socket();
   }
 
-  static createDeviceFromMessage(msg) {
+  /**
+   * Create a Device instance from a raw message
+   */
+  static createDeviceFromMessage(msg: Buffer): Device {
     const message = querystring.parse(msg.toString('utf8'), '\r\n', ':');
+
     const urlObject = url.parse(message.Location);
 
     return new Device({
@@ -32,14 +49,22 @@ class Device {
     });
   }
 
-  sendCommand(command) {
+  /**
+   * Send command to device
+   */
+  sendCommand(command: Object): Promise<> {
     return new Promise((resolve, reject) => {
       const stringified = JSON.stringify(command);
-      this.socket.connect(this.port, this.address, () => this.socket.write(`${stringified}\r\n`)); // Should those be double quotes??
+      this.socket.connect(
+        {
+          port: this.port,
+          address: this.address,
+        },
+        () => this.socket.write(`${stringified}\r\n`),
+      );
 
       this.socket.on('data', (data) => {
         const response = JSON.parse(data.toString('utf8'));
-        // {"id":1, "result":["ok"]} response from the device
         if (response.id === this.id && response.result[0] === 'ok') {
           this.socket.destroy();
           resolve();
@@ -53,72 +78,74 @@ class Device {
     });
   }
 
-  // 'on', 'smooth', 500
-  powerOn(power, effect, duration) {
+  /**
+   * Power on/off the device
+   */
+  powerOn(power: string, effect: string, duration: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_power', params: [power, effect, duration] });
   }
 
-  getProp(props) {
+  getProp(props: Array<string>): Promise<> {
     return this.sendCommand({ id: this.id, method: 'get_prop', params: props });
   }
 
-  setCtAbx(ctValue, effect, duration) {
+  setCtAbx(ctValue: number, effect: string, duration: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_ct_abx', params: [ctValue, effect, duration] });
   }
 
-  setRgb(rgbValue, effect, duration) {
+  setRgb(rgbValue: number, effect: string, duration: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_rgb', params: [rgbValue, effect, duration] });
   }
 
-  setHsv(hue, sat, effect, duration) {
+  setHsv(hue: number, sat: number, effect: string, duration: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_hsv', params: [hue, sat, effect, duration] });
   }
 
-  setBright(brightness, effect, duration) {
+  setBright(brightness: number, effect: string, duration: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_bright', params: [brightness, effect, duration] });
   }
 
-  toggle() {
+  toggle(): Promise<> {
     return this.sendCommand({ id: this.id, method: 'toggle', params: [] });
   }
 
-  default() {
+  default(): Promise<> {
     return this.sendCommand({ id: this.id, method: 'default', params: [] });
   }
 
-  startCf(count, action, flowExpression) {
+  startCf(count: number, action: number, flowExpression: string): Promise<> {
     return this.sendCommand({ id: this.id, method: 'start_cf', params: [count, action, flowExpression] });
   }
 
-  stopCf() {
+  stopCf(): Promise<> {
     return this.sendCommand({ id: this.id, method: 'stop_cf', params: [] });
   }
 
-  setScene(name, val1, val2, val3) {
+  setScene(name: string, val1: number, val2: number, val3: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_scene', params: [name, val1, val2, val3] });
   }
 
-  cronAdd(type, value) {
+  cronAdd(type: number, value: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'cron_add', params: [type, value] });
   }
 
-  cronGet(type) {
+  cronGet(type: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'cron_get', params: [type] });
   }
 
-  cronDel(type) {
+  cronDel(type: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'cron_del', params: [type] });
   }
 
-  setAdjust(action, prop) {
+  setAdjust(action: string, prop: string): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_adjust', params: [action, prop] });
   }
 
-  setMusic(action, host, port) {
+  setMusic(action: number, host: string, port: number): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_music', params: [action, host, port] });
   }
 
-  setName(name) {
+  setName(name: string): Promise<> {
     return this.sendCommand({ id: this.id, method: 'set_name', params: [name] });
   }
 }

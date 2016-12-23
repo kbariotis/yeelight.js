@@ -11,7 +11,9 @@
     "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha --print both -- --compilers js:babel-register --recursive",
     "lint": "eslint src test",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
+    "build-docs": "documentation build src/*.js -f md -o DOCS.md",
+    "prepublish": "npm run clean && npm run flow && npm run lint && npm run test && npm run build && npm run build-docs",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "files": [
     "lib",
@@ -48,11 +50,14 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
+    "flow-bin": "^0.37.4",
     "istanbul": "^1.0.0-alpha",
     "mocha": "^3.0.2",
     "rimraf": "^2.5.4"
   },
   "dependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "documentation": "^4.0.0-beta16",
     "winston": "^2.3.0"
   }
 }

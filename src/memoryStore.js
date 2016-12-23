@@ -1,18 +1,36 @@
-import Store from './store';
+/** @flow */
 
+import Store from './store';
+import Device from './device';
+
+/**
+ * Memory store for Yeelight devices
+ */
 class MemoryStore extends Store {
+
+  devices: Array<Device>
+
+  /**
+   * Constructor
+   */
   constructor() {
     super();
     this.devices = [];
   }
 
-  add(device) {
+  /**
+   * Add a Device to the store
+   */
+  add(device: Device): void {
     if (!this.getById(device.id)) {
       this.devices.push(device);
     }
   }
 
-  getById(id) {
+  /**
+   * Get Device by Id
+   */
+  getById(id: string): Device|null {
     let device = null;
     for (let i = 0; i < this.devices.length; i += 1) {
       if (this.devices[i].id === id) {
@@ -24,7 +42,10 @@ class MemoryStore extends Store {
     return device;
   }
 
-  removeById(id) {
+  /**
+   * Remove Device from the store
+   */
+  removeById(id: string): void {
     for (let i = 0; i < this.devices.length; i += 1) {
       if (this.devices[i].id === id) {
         this.devices.splice(i, 1);
@@ -33,7 +54,10 @@ class MemoryStore extends Store {
     }
   }
 
-  get() {
+  /**
+   * Get all devices
+   */
+  get(): Array<Device> {
     return this.devices;
   }
 }
