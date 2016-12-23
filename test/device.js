@@ -6,7 +6,7 @@ describe('Device', () => {
     const device = new Device({
       id: '1234',
       address: '192.168.0.11',
-      port: 1982,
+      port: 55443,
     });
     expect(device).to.be.an.instanceof(Device);
   });
@@ -23,7 +23,7 @@ describe('Device', () => {
     const device = new Device({
       id: '1234',
       address: '192.168.0.11',
-      port: 1982,
+      port: 55443,
     });
     expect(device.id).to.equal('1234');
   });

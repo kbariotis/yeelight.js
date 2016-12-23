@@ -35,6 +35,33 @@ class Yeelight {
     });
   }
 
+  watch() {
+    return new Promise((resolve, reject) => {
+      this.resolve = resolve;
+      this.reject = reject;
+
+      this.socket.on('listening', () => {
+        var address = this.socket.address();
+        this.logger.info(`Listening on ${address.address}:${address.port}`);
+      });
+
+      this.socket.on('message', (msg) => {
+        const message = querystring.parse(msg.toString('utf8'), '\r\n', ':');
+        const urlObject = url.parse(message.Location);
+
+        this.resolve(new Device({
+          id: message.id,
+          address: urlObject.hostname,
+          port: urlObject.port,
+        }));
+      });
+
+      this.socket.bind(1982, () => {
+        this.socket.addMembership('239.255.255.250');
+      });
+    });
+  }
+
   onBind() {
     this.socket.send(this.message, 0, this.message.length, 1982, '239.255.255.250');
 

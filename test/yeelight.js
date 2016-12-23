@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Yeelight from '../src/yeelight';
+import Device from '../src/device';
 import dgram from 'dgram';
 
 describe('Yeelight', () => {
@@ -19,7 +20,6 @@ describe('Yeelight', () => {
   });
 
   it('should send discovery multicast packet', (done) => {
-
     const yeelight = new Yeelight({verbose: false, discoveryTimeout: 100});
 
     yeelight
@@ -34,5 +34,22 @@ describe('Yeelight', () => {
       const message = new Buffer(require('./response'));
       const client = dgram.createSocket('udp4');
       client.send(message, 43210, '0.0.0.0', () => client.close());
+  });
+
+  it('should listen for advertisement packets', (done) => {
+    const yeelight = new Yeelight({verbose: false, discoveryTimeout: 100});
+
+    yeelight
+      .watch()
+      .then((device) => {
+
+        expect(device).to.be.an.instanceof(Device);
+        done();
+      })
+      .catch((err) => done(err));
+
+      const message = new Buffer(require('./response'));
+      const client = dgram.createSocket('udp4');
+      client.send(message, 1982, '239.255.255.250', () => client.close());
   });
 });
