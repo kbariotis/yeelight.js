@@ -1,13 +1,12 @@
-import dgram from 'dgram';
+import EventEmitter from 'events';
 import Logger from './logger';
 import Device from './device';
 import MemoryStore from './memoryStore';
 import Store from './store';
 import Discover from './discover';
 import Watcher from './watch';
-import EventEmitter from 'events';
 
-class Yeelight extends EventEmitter{
+class Yeelight extends EventEmitter {
 
   constructor(options) {
     super();
@@ -26,7 +25,7 @@ class Yeelight extends EventEmitter{
     return new Promise((resolve, reject) => {
       this.discovery.discover();
 
-      this.discovery.on('message', (msg) => this.onReply(msg));
+      this.discovery.on('message', msg => this.onReply(msg));
       this.discovery.on('error', () => reject());
 
       setTimeout(() => {
@@ -40,7 +39,7 @@ class Yeelight extends EventEmitter{
   }
 
   watch() {
-    this.watcher.on('message', (msg) => this.onAdvertisment(msg));
+    this.watcher.on('message', msg => this.onAdvertisment(msg));
     this.watcher.watch();
   }
 

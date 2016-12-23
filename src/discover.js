@@ -1,10 +1,9 @@
 import dgram from 'dgram';
-import Logger from './logger';
 import EventEmitter from 'events';
 
 class Discover extends EventEmitter {
 
-  constructor(options) {
+  constructor() {
     super();
     this.socket = dgram.createSocket('udp4');
     this.message = new Buffer('M-SEARCH * HTTP/1.1\r\nHOST:239.255.255.250:1982\r\nMAN:"ssdp:discover"\r\nST:wifi_bulb\r\n');

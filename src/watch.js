@@ -3,7 +3,7 @@ import EventEmitter from 'events';
 
 class Watch extends EventEmitter {
 
-  constructor(options) {
+  constructor() {
     super();
     this.socket = dgram.createSocket('udp4');
   }
@@ -13,7 +13,7 @@ class Watch extends EventEmitter {
 
     this.socket.on('listening', () => this.emit('listening'));
 
-    this.socket.on('message', (msg) => this.emit('message', msg));
+    this.socket.on('message', msg => this.emit('message', msg));
 
     this.socket.bind(1982, () => this.socket.addMembership('239.255.255.250'));
   }
