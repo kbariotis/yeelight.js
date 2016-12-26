@@ -1,7 +1,7 @@
 'use strict';
 
-var Yeelight = require('../lib/yeelight').Yeelight;
-const yeelight = new Yeelight({verbose: true, discoveryTimeout: 100});
+const Yeelight = require('../lib/yeelight').Yeelight;
+const yeelight = new Yeelight({verbose: true});
 
 yeelight.watch();
 yeelight.on('device', (device) => {
