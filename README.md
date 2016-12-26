@@ -3,22 +3,19 @@ Control all of your Yeelight Devices with Node.js
 
 [Yeelight products](https://www.yeelight.com/)
 
-Big thanks to [Travelport-Ukraine/npm-module-boilerplate](https://github.com/Travelport-Ukraine/npm-module-boilerplate) 
-for their great boilerplate.
-
-You can find the API documentation of the Yeelight devices 
-[here](http://www.yeelight.com/download/Yeelight_Inter-Operation_Spec.pdf).
-
 ## Docs
 
-* Read the generated documentation [here](https://github.com/kbariotis/yeelight.js/blob/master/DOCS.md).
 * Check the examples in [`examples/` folder](https://github.com/kbariotis/yeelight.js/blob/master/examples/).
+* Read the generated documentation [here](https://github.com/kbariotis/yeelight.js/blob/master/DOCS.md).
+* Find the API documentation of the Yeelight devices 
+[here](http://www.yeelight.com/download/Yeelight_Inter-Operation_Spec.pdf).
 
 ## Contributing
 
 [Read this first](https://github.com/kbariotis/yeelight.js/blob/master/CONTRIBUTING.md)
 
-This module uses Babel to transpile Stage 2 Javascript and airbnb's style.
+This module uses Babel to transpile Stage 2 Javascript and airbnb's style. Big thanks to [Travelport-Ukraine/npm-module-boilerplate](https://github.com/Travelport-Ukraine/npm-module-boilerplate) for their great boilerplate.
+
 
 - `npm run clean` - Remove `lib/` directory
 - `npm test` - Run tests.
