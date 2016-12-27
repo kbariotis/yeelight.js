@@ -1,7 +1,7 @@
 # Yeelight.js [![Build Status](https://travis-ci.org/kbariotis/yeelight.js.svg?branch=master)](https://travis-ci.org/kbariotis/yeelight.js)
 Control all of your Yeelight Devices with Node.js
 
-* Control of a Yeelight device
+* Control device
 * Discovery of near connected devices
 * Watching for new devices
 
