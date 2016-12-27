@@ -1,6 +1,10 @@
 # Yeelight.js [![Build Status](https://travis-ci.org/kbariotis/yeelight.js.svg?branch=master)](https://travis-ci.org/kbariotis/yeelight.js)
 Control all of your Yeelight Devices with Node.js
 
+* Control of a Yeelight device
+* Discovery of near connected devices
+* Watching for new devices
+
 [Yeelight products](https://www.yeelight.com/)
 
 ## Docs
@@ -14,14 +18,13 @@ Control all of your Yeelight Devices with Node.js
 
 [Read this first](https://github.com/kbariotis/yeelight.js/blob/master/CONTRIBUTING.md)
 
-This module uses Babel to transpile Stage 2 Javascript and airbnb's style. Big thanks to [Travelport-Ukraine/npm-module-boilerplate](https://github.com/Travelport-Ukraine/npm-module-boilerplate) for their great boilerplate.
-
+Big thanks to [Travelport-Ukraine/npm-module-boilerplate](https://github.com/Travelport-Ukraine/npm-module-boilerplate) for their great boilerplate.
 
 - `npm run clean` - Remove `lib/` directory
 - `npm test` - Run tests.
-- `npm test:watch` - You can even re-run tests on file changes!
+- `npm test:watch` - You can even re-run tests on file changes.
 - `npm run cover` - Yes. You can even cover ES6 code.
-- `npm run lint` - Lint your code.
+- `npm run lint` - Lint your code using Airbnb's style.
 - `npm run flow` - Check using Flow.
 - `npm run test:examples` - Write your examples on pure JS for better understanding module usage.
 - `npm run build` - Build.
