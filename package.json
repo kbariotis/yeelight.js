@@ -1,6 +1,6 @@
 {
   "name": "yeelight.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Control your Yeelight devices with Node.js.",
   "main": "./lib/yeelight.js",
   "scripts": {
@@ -24,11 +24,10 @@
     "url": "git+https://github.com/kbariotis/yeelight.js.git"
   },
   "keywords": [
-    "boilerplate",
-    "npm",
-    "module",
-    "node",
-    "javascript"
+    "yeelight",
+    "smartbulb",
+    "IoT",
+    "smart home"
   ],
   "author": "Kostas konmpar@gmail.com",
   "license": "MIT",
