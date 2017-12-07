@@ -1,10 +1,8 @@
-'use strict';
-
-var Device = require('../lib/yeelight').Device;
+const Device = require('../lib/yeelight').Device;
 
 const device = new Device({
-  id: '1234',
-  address: '192.168.0.19',
+  id: 'Y1',
+  address: '192.168.0.18',
   port: '55443',
 });
 

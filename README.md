@@ -9,9 +9,11 @@ Control all of your Yeelight Devices with Node.js
 
 ## Docs
 
+*BEFORE ANYTHING*: You will have to connect your device to your local network using the Yeelight app. From there enable the Third Party Control mode in orde for the device to be discoverable.
+
 * Check the examples in [`examples/` folder](https://github.com/kbariotis/yeelight.js/blob/master/examples/).
 * Read the generated documentation [here](https://github.com/kbariotis/yeelight.js/blob/master/DOCS.md).
-* Find the API documentation of the Yeelight devices 
+* Find the API documentation of the Yeelight devices
 [here](http://www.yeelight.com/download/Yeelight_Inter-Operation_Spec.pdf).
 
 ## Contributing
