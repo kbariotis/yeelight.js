@@ -1,6 +1,7 @@
 /* @flow */
 
 import net from 'net';
+import os from 'os';
 import querystring from 'querystring';
 import url from 'url';
 
@@ -64,8 +65,20 @@ class Device {
       );
 
       this.socket.on('data', (data) => {
-        const response = JSON.parse(data.toString('utf8'));
-        if (response.id === this.id && response.result[0] === 'ok') {
+        const responses = data
+          .toString("utf8")
+          .trim()
+          .split(os.EOL)
+          .map((ev) => JSON.parse(ev.trim()));
+
+        const isSuccessful = responses.some(
+          (response) =>
+            response.id === this.id &&
+            response.result &&
+            response.result[0] === "ok"
+        );
+
+        if (isSuccessful) {
           this.socket.destroy();
           resolve();
         } else {
